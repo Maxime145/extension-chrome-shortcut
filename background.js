@@ -10,8 +10,8 @@ async function loadConfig() {
     return acc;
   }, {});
 
-  browser.storage.local.set({ config }, () => {
-    console.log('Configuration sauvegardée dans chrome.storage');
+  browser.storage.local.set(config, () => {
+    console.log('Configuration sauvegardée dans chrome.storage.config');
   });
 }
 
