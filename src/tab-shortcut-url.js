@@ -3,7 +3,16 @@ const browser = chrome;
 const openUrl = (prefix, suffix) => {
     if (prefix) {
         const url = `${prefix}${suffix ?? ""}`;
-        browser.tabs.create({ url });
+
+        browser.tabs.query({}, (tabs) => {
+            const existingTab = tabs.find(tab => tab.url.includes(url));
+
+            if (existingTab) {
+                browser.tabs.update(existingTab.id, { active: true });
+            } else {
+                browser.tabs.create({ url });
+            }
+        });
     } else {
         alert("Veuillez entrer une url.");
     }

@@ -3,12 +3,16 @@
   "name": "Ouvrir une page",
   "version": "1.0",
   "description": "Une extension pour ouvrir une page avec un SUFFIX spécifié.",
-  "permissions": ["activeTab", "storage"],
+  "permissions": ["activeTab", "storage", "tabs"],
   "action": {
     "default_popup": "popup.html"
   },
   "host_permissions": ["https://*/*"],
   "background": {
     "service_worker": "background.js"
+  },
+  "content_security_policy": {
+    "script-src": "'self';",
+    "object-src": "'none';"
   }
 }
